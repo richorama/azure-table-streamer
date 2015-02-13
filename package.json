@@ -1,6 +1,6 @@
 {
   "name": "azure-table-streamer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "stream to azure table storage",
   "main": "index.js",
   "dependencies": {},
