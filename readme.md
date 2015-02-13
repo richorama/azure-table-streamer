@@ -21,7 +21,8 @@ Set up the module:
 // you must require azure
 var azure = require('azure-storage');
 
-var streamer = require('./index')(azure, azure.createTableService("UseDevelopmentStorage=true"));
+var AzureTableStreamer = require('azure-table-streamer');
+var streamer = AzureTableStreamer(azure, azure.createTableService("UseDevelopmentStorage=true"));
 ```
 
 Write stream:
