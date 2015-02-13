@@ -28,7 +28,7 @@ var streamer = AzureTableStreamer(azure, azure.createTableService("UseDevelopmen
 Write stream:
 
 ```js
-var writer = streamer.writer("foo", "partition1")
+var writer = streamer.writer("table1", "partition1")
 
 // write a single record
 writer.write("foo bar baz", function(err){
@@ -42,7 +42,7 @@ process.stdin.pipe(writer);
 Read stream:
 
 ```js
-var reader = streamer.reader("foo", "partition1")
+var reader = streamer.reader("table1", "partition1")
 
 reader.on("data", function(x){
 	console.log(x.toString());
