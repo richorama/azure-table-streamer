@@ -1,5 +1,7 @@
 # azure-table-streamer
 
+__WARNING: this package makes some serious assumptions about how you use table storage, this is not general purpose__
+
 A module to read/write text records to azure table storage. 
 
 Data is appended to a given partition, RowKeys are automatically generated.
