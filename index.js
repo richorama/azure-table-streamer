@@ -41,9 +41,6 @@ var TableReader = function(azure, tableService, table, partition){
 	stream.Readable.call(this);
 	done = false;
 
-
-
-
 	TableReader.prototype._read = function(){
 
 		if (done) return;
@@ -55,13 +52,15 @@ var TableReader = function(azure, tableService, table, partition){
 			tableService.queryEntities(table, query, continuationToken, function(error, result, response){
 				if (done) return;
 
-				if (result.entries){
+				if (error) that.emit('error', error);
+
+				if (result && result.entries){
 					result.entries.forEach(function(x){
 						if (x.value._) that.push(x.value._);
 					});
 				}
 
-				if (result.continuationToken){
+				if (result && result.continuationToken){
 					setImmediate(runQuery, result.continuationToken);
 				} else {
 					that.push(null);
