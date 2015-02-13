@@ -52,6 +52,14 @@ reader.on("data", function(x){
 reader.pipe(process.stdout);
 ```
 
+## How it works
+
+Table Storage is optimised for append writes. This module observes that, and creates row keys for you in ascending order (using a timestamp). 
+
+The table entity will have one field `value`, which holds the text streamed into it.
+
+There is no delete or update.
+
 ## License
 
 MIT
