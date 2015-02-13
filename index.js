@@ -35,21 +35,28 @@ var TableWriter = function(azure, tableService, table, partition){
 util.inherits(TableWriter, stream.Writable);
 
 var TableReader = function(azure, tableService, table, partition){
-	events.EventEmitter.call(this);
+	stream.Readable.call(this);
+	done = false;
 
-	this.read = function(){
+	TableReader.prototype._read = function(){
+
+		if (done) return;
+
 		that = this;
 		var query = new azure.TableQuery().where('PartitionKey eq ?', partition);
 		tableService.queryEntities(table, query, null, function(error, result, response){
-			if (error) return that.emit("error", error);
 			if (!result) return;
+			if (done) return;
+			
 			result.entries.forEach(function(x){
-				that.emit("data", x.value._);
+				if (x.value._) that.push(x.value._);
 			});
+			done = true;
+			that.push(null);
 
 		});
 	}
 }
 
-util.inherits(TableReader, events.EventEmitter);
+util.inherits(TableReader, stream.Readable);
 
