@@ -22,16 +22,16 @@ Set up the module:
 var azure = require('azure-storage');
 
 var AzureTableStreamer = require('azure-table-streamer');
-var streamer = AzureTableStreamer(azure, azure.createTableService("UseDevelopmentStorage=true"));
+var streamer = AzureTableStreamer(azure, azure.createTableService('UseDevelopmentStorage=true'));
 ```
 
 Write stream:
 
 ```js
-var writer = streamer.writer("table1", "partition1")
+var writer = streamer.writer('table1', 'partition1')
 
 // write a single record
-writer.write("foo bar baz", function(err){
+writer.write('foo bar baz', function(err){
 	// written
 });
 
@@ -42,9 +42,9 @@ process.stdin.pipe(writer);
 Read stream:
 
 ```js
-var reader = streamer.reader("table1", "partition1")
+var reader = streamer.reader('table1', 'partition1')
 
-reader.on("data", function(x){
+reader.on('data', function(x){
 	console.log(x.toString());
 });
 

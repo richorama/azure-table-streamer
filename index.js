@@ -1,6 +1,6 @@
 var stream = require('stream');
-var events = require("events");
-var util = require("util");
+var events = require('events');
+var util = require('util');
 
 module.exports = function(azure, tableService){
 	return {
