@@ -1,6 +1,7 @@
 var stream = require('stream');
 var events = require('events');
 var util = require('util');
+var uuid = require('node-uuid');
 
 module.exports = function(azure, tableService){
 	return {
@@ -22,7 +23,7 @@ var TableWriter = function(azure, tableService, table, partition){
 		var entGen = azure.TableUtilities.entityGenerator;
 		var entity = {
 			PartitionKey: entGen.String(partition),
-            RowKey: entGen.String(new Date().getTime().toString()),
+            RowKey: entGen.String(new Date().getTime().toString()) + "-" + uuid.v4(),
             value: entGen.String(chunk.toString())
 		}
 
