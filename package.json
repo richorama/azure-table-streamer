@@ -4,7 +4,7 @@
   "description": "stream to azure table storage",
   "main": "index.js",
   "dependencies": {
-    "node-uuid": "1.4.4"
+    "node-uuid": "1.4.8"
   },
   "devDependencies": {},
   "scripts": {
